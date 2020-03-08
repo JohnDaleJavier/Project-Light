@@ -5,17 +5,25 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
+    SharedData sharedData;
     SpriteRenderer sprite;
+    Vector2 direction;
+    Rigidbody2D body2D;
+    Animator anim;
+    PlayerTag playerTag;
+    PlayerLight playerLight;
+
     public float playerHorizSpeed;
     public float playerVertSpeed;
+    public float maxSpeed;
+
     public bool canMove;
-    private Vector2 direction;
-    private Rigidbody2D body2D;
-    private Animator anim;
+    
+
 
     //Rewired stuff that we will DEFINITELY use but not now
     //public Player player;
-    //public int playerId;
+    public int playerId;
 
     void Start()
     {
@@ -41,12 +49,20 @@ public class PlayerMovement : MonoBehaviour
     {
         if(canMove)
         {
+            
             if (Input.GetAxisRaw("Horizontal") != 0 || Input.GetAxisRaw("Vertical") != 0)
             {
-                body2D.AddForce(new Vector2(direction.x * playerHorizSpeed, direction.y * playerVertSpeed));
+                body2D.AddForce(new Vector2((direction.x +.03f) * playerHorizSpeed, direction.y * playerVertSpeed));
+                if(body2D.velocity.x >= maxSpeed){
+                    body2D.velocity = new Vector2(maxSpeed, body2D.velocity.y);
+                }
+                if(body2D.velocity.y >= maxSpeed){
+                    body2D.velocity = new Vector2(body2D.velocity.x, maxSpeed);
+                }
+            }
+            else{
+                body2D.velocity = new Vector2(0f,0f);
             }
         }
     }
-
-    
 }
