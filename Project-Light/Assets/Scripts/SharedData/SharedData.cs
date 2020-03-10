@@ -7,7 +7,7 @@ public class SharedData : ScriptableObject
 {
     public int setRounds;
     public float setTime;
-
+    public int 
     void Start()
     {
         
