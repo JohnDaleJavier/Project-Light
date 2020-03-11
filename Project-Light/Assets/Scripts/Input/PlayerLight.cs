@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Rewired;
 
 public class PlayerLight : MonoBehaviour
 {
@@ -15,7 +16,7 @@ public class PlayerLight : MonoBehaviour
 
     void Start()
     {
-        //cursor = GameObject.Find("Cursor " + playerMovement.playerId.ToString());
+        
     }
 
     // Update is called once per frame

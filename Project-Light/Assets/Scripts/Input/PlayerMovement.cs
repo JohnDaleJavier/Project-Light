@@ -1,11 +1,11 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-//using Rewired;
+using Rewired;
 
 public class PlayerMovement : MonoBehaviour
 {
-    SharedData sharedData;
+    public SharedData sharedData;
     SpriteRenderer sprite;
     Vector2 direction;
     Rigidbody2D body2D;
@@ -18,11 +18,9 @@ public class PlayerMovement : MonoBehaviour
     public float maxSpeed;
 
     public bool canMove;
+    bool mainPlayer;
     
-
-
-    //Rewired stuff that we will DEFINITELY use but not now
-    //public Player player;
+    public Player player;
     public int playerId;
 
     void Start()
@@ -31,6 +29,18 @@ public class PlayerMovement : MonoBehaviour
         sprite = GetComponent<SpriteRenderer>();
         body2D = GetComponent <Rigidbody2D>();
         anim = GetComponent<Animator>();
+        playerTag = GetComponent<PlayerTag>();
+        playerLight = GetComponent<PlayerLight>();
+        if (sharedData.currentMainPlayer == playerId)
+        {
+            playerTag.enabled = false;
+            playerLight.enabled = true;
+        }
+        else
+        {
+            playerTag.enabled = true;
+            playerLight.enabled = false;
+        }
     }
 
     void Update()
@@ -47,7 +57,7 @@ public class PlayerMovement : MonoBehaviour
 
     void FixedUpdate()
     {
-        if(canMove)
+        if (canMove && sharedData.pauseGame == false)
         {
             
             if (Input.GetAxisRaw("Horizontal") != 0 || Input.GetAxisRaw("Vertical") != 0)
