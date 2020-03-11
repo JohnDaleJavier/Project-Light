@@ -48,11 +48,15 @@ public class PlayerMovement : MonoBehaviour
     {
         if (canMove)
         {
-            direction.y = Input.GetAxisRaw("Vertical");
-            direction.x = Input.GetAxisRaw("Horizontal");
+            direction.y = player.GetAxisRaw("VerticalMovement");
+            direction.x = player.GetAxisRaw("HorizontalMovement");
+
+            anim.SetInteger("playerMovement", (int)direction.x);
+            Flip();
+
         }
 
-        //anim.SetBool("isMoving", true);
+        //anim.SetBool("PlayerMovement", true);
         //For when we have animations and shit
     }
 
@@ -86,5 +90,19 @@ public class PlayerMovement : MonoBehaviour
     {
         transform.position = startPosition; 
     }
-    s
+
+    void Flip()
+    {
+        if (direction.x > 0)
+        {
+            
+                sprite.flipX = false;
+        }
+            else if (direction.x <= 0)
+            {
+                sprite.flipX = true;
+            }
+        
+    }
+
 }

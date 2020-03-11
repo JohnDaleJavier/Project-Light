@@ -25,7 +25,7 @@ public class ScoreManager : MonoBehaviour
     void Update()
     {
         
-        for(int i = 0; i < playerScores.Length; i++)
+        for(int i = 0; i <= playerScores.Length; i++)
         {
             if(playerScores[i] < 0)
             {

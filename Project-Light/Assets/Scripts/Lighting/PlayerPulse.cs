@@ -17,12 +17,13 @@ public class PlayerPulse : MonoBehaviour
     {
         playerMovement = GetComponent <PlayerMovement>();
         playerID = playerMovement.playerId;
+        player = ReInput.players.GetPlayer(playerID);
         
     }
 
     private void Update()
     {
-        if (Input.anyKeyDown)
+        if (player.GetButtonDown("Confirm"))
         {
             StartCoroutine(pulse());
         }
