@@ -13,7 +13,8 @@ public class SharedData : ScriptableObject
     {
         pauseGame = false;
         setRounds = 1;
-        setTime = 1;
+        setTime = 60;
+        currentMainPlayer = 0;
     }
 
     // Update is called once per frame

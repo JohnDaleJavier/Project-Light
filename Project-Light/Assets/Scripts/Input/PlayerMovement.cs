@@ -18,7 +18,6 @@ public class PlayerMovement : MonoBehaviour
     public float maxSpeed;
 
     public bool canMove;
-    bool mainPlayer;
     
     public Player player;
     public int playerId;

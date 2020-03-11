@@ -11,18 +11,17 @@ public class PlayerLight : MonoBehaviour
     PlayerMovement playerMovement;
     PlayerTag playerTag;
     Vector2 mousePosition;
-    public GameObject cursor;
-
+    Player player;
+    int playerID;
 
     void Start()
     {
-        
+        playerMovement = GetComponent<PlayerMovement>();
+        playerID = playerMovement.playerId;
     }
 
     // Update is called once per frame
     void Update()
     {
-        mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        cursor.transform.position = mousePosition;
     }
 }

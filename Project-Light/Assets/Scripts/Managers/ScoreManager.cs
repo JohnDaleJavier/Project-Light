@@ -9,22 +9,37 @@ public class ScoreManager : MonoBehaviour
     public SharedData sharedData;
     public TextMeshProUGUI[] playerScoresUI;
     public TextMeshProUGUI timerUI;
-    public Image raceDistanceUI;
+    public Image timerBarUI;
 
-    public int pointsPerTag = 20;
-    int[] playerScores = { 0, 0, 0, 0 };
+    public float pointsPerTag = 20;
+    float[] playerScores = { 0, 0, 0, 0 };
 
     float timeLeft;
+    float timeLeftHold;
     void Start()
     {
         timeLeft = sharedData.setTime;
+        timeLeftHold = sharedData.setTime;
     }
     void Update()
     {
-        for(int i = 0; i < 4; i++)
+        playerScores[sharedData.currentMainPlayer] += Time.deltaTime;
+        for(int i = 0; i < playerScores.Length; i++)
         {
-            playerScoresUI[i].text = playerScores[i].ToString() ;
+            if(playerScores[i] < 0)
+            {
+                playerScores[i] = 0; 
+            }
+            playerScoresUI[i].text = playerScores[i].ToString("F0") ;
         }
+        if(!sharedData.pauseGame)
+        {
+            timeLeft -= Time.deltaTime;
+            timerUI.text = ("Time Left: " + timeLeft.ToString("F0"));
+            timerBarUI.fillAmount = timeLeft / timeLeftHold;
+
+        }
+
     }
     public void AddScoreTag(int playerID)
     {

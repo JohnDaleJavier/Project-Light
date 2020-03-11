@@ -6,7 +6,7 @@ public class PlayerTag : MonoBehaviour
 {
     public SharedData sharedData;
     public ScoreManager scoreManager;
-    PlayerMovement playerInput;
+    public PlayerMovement playerInput;
     Rigidbody2D body;
 
 
