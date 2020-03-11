@@ -23,7 +23,7 @@ public class FlashLightCollider : MonoBehaviour
             if (other.gameObject.GetComponent<PlayerMovement>().playerId != sharedData.currentMainPlayer)
             {
                 print ("AGHHHHHHHHHHHHHHHHHHHHHHHHHHHHH");
-
+                //other.gameObject.GetComponent<PlayerMovement>().
             }
             //StartCoroutine(Tagged());
             //scoreManager.AddScoreTag(other.gameObject.GetComponent<PlayerMovement>().playerId);
