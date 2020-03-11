@@ -2029,7 +2029,7 @@ GameObject:
   - component: {fileID: 1345373208}
   - component: {fileID: 1345373207}
   m_Layer: 0
-  m_Name: BlueGhost_00000
+  m_Name: BlueTest
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
