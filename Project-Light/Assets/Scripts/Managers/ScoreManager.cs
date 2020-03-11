@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class ScoreManager : MonoBehaviour
 {
@@ -23,7 +24,7 @@ public class ScoreManager : MonoBehaviour
     }
     void Update()
     {
-        playerScores[sharedData.currentMainPlayer] += Time.deltaTime;
+        
         for(int i = 0; i < playerScores.Length; i++)
         {
             if(playerScores[i] < 0)
@@ -34,12 +35,16 @@ public class ScoreManager : MonoBehaviour
         }
         if(!sharedData.pauseGame)
         {
+            playerScores[sharedData.currentMainPlayer] += Time.deltaTime;
             timeLeft -= Time.deltaTime;
             timerUI.text = ("Time Left: " + timeLeft.ToString("F0"));
             timerBarUI.fillAmount = timeLeft / timeLeftHold;
 
         }
+        if(timeLeft < 0)
+        {
 
+        }
     }
     public void AddScoreTag(int playerID)
     {
