@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 8708885321082149745}
   - component: {fileID: 8708885321082149746}
   - component: {fileID: 8708885321082149747}
+  - component: {fileID: -8567162186966275884}
   m_Layer: 0
   m_Name: WallPlaceholder
   m_TagString: Untagged
@@ -118,3 +119,31 @@ PolygonCollider2D:
       - {x: 1.525, y: -1.37}
       - {x: 1.525, y: 1.4}
       - {x: 1.505, y: 1.42}
+--- !u!114 &-8567162186966275884
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8708885321082149748}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7db70e0ea77f5ac47a8f4565a9406397, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_ShadowGroup: 0
+  m_HasRenderer: 1
+  m_UseRendererSilhouette: 1
+  m_CastsShadows: 1
+  m_SelfShadows: 0
+  m_ApplyToSortingLayers: 
+  m_ShapePath:
+  - {x: -1.4780605, y: -1.3373703, z: 0}
+  - {x: 1.495747, y: -1.355058, z: 0}
+  - {x: 1.5134346, y: 1.3904321, z: 0}
+  - {x: 0.9451103, y: 1.4081204, z: 0}
+  - {x: 0.9775311, y: -0.74249685, z: 0}
+  - {x: -1.4987016, y: -0.7601842, z: 0}
+  m_ShapePathHash: 364984564
+  m_Mesh: {fileID: 0}
+  m_InstanceId: 23672
