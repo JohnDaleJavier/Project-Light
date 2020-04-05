@@ -5,6 +5,7 @@ using Rewired;
 
 public class PlayerMovement : MonoBehaviour
 {
+    //Gathered Scripts
     public SharedData sharedData;
     SpriteRenderer sprite;
     Vector2 direction;
@@ -13,26 +14,49 @@ public class PlayerMovement : MonoBehaviour
     PlayerTag playerTag;
     PlayerLight playerLight;
 
+    //respawn
     Vector2 startPosition;
+
+    //values
     public float playerHorizSpeed;
+    float playerHorizSpeedHold;
     public float playerVertSpeed;
+    float playerVertSpeedHold;
     public float maxSpeed;
 
+    public float deathTimer = 5;
+    float deathTimerHold;
+
+    //bools
     public bool canMove;
+    public bool caughtInLight;
     
+    //rewired
     Player player;
     public int playerId;
 
     void Start()
     {
         canMove = true;
+
+        //used for respawn
+        startPosition = new Vector3(this.transform.position.x, this.transform.position.y, 0f);
+
+        //gather componenets
         player = ReInput.players.GetPlayer(playerId);
         sprite = GetComponent<SpriteRenderer>();
         body2D = GetComponent <Rigidbody2D>();
         anim = GetComponent<Animator>();
         playerTag = GetComponent<PlayerTag>();
         playerLight = GetComponent<PlayerLight>();
-        startPosition = new Vector3(this.transform.position.x, this.transform.position.y, 0f);
+        
+
+        // value holds
+        playerHorizSpeedHold = playerHorizSpeed;
+        playerVertSpeedHold = playerVertSpeed;
+        deathTimerHold = deathTimer;
+
+        //If we want to implement changing main player mid game
         if (sharedData.currentMainPlayer == playerId)
         {
             playerTag.enabled = false;
@@ -51,13 +75,33 @@ public class PlayerMovement : MonoBehaviour
             direction.y = player.GetAxisRaw("VerticalMovement");
             direction.x = player.GetAxisRaw("HorizontalMovement");
 
-            anim.SetInteger("playerMovement", (int)direction.x);
+            if(direction.x != 0){
+                anim.SetBool("playerMovement", true);
+            }
+            else{
+                anim.SetBool("playerMovement", false);
+            }
+            
             Flip();
 
         }
-
-        //anim.SetBool("PlayerMovement", true);
-        //For when we have animations and shit
+        // Slow then kill if standing in light for too long
+        if(caughtInLight && sharedData.pauseGame == false){
+            playerHorizSpeed = playerHorizSpeedHold - (playerHorizSpeedHold * .4f);
+            playerVertSpeed = playerVertSpeedHold - (playerVertSpeedHold * .4f);
+            deathTimer -= Time.deltaTime;
+            //print(playerHorizSpeed.ToString() +" "+ playerVertSpeed.ToString());
+            if(deathTimer <= 0){
+                StartCoroutine(Death());
+            }
+        }
+        else if(!caughtInLight){
+            playerHorizSpeed = playerHorizSpeedHold;
+            playerVertSpeed = playerVertSpeedHold;
+            //print(deathTimer.ToString());
+            deathTimer = deathTimerHold;
+            //print(playerHorizSpeed.ToString() +" "+ playerVertSpeed.ToString());
+        }
     }
 
     void FixedUpdate()
@@ -103,6 +147,17 @@ public class PlayerMovement : MonoBehaviour
                 sprite.flipX = true;
             }
         
+    }
+
+    public IEnumerator Death(){
+        // stop everything Die Respawn wait 1 second
+        anim.SetBool("Death",true);
+        canMove = false;
+        yield return new WaitForSeconds(2);
+        anim.SetBool("Death",false);
+        transform.position = startPosition;
+        canMove = true;
+
     }
 
 }

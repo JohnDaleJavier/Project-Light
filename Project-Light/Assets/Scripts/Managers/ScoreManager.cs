@@ -8,6 +8,7 @@ using UnityEngine.SceneManagement;
 public class ScoreManager : MonoBehaviour
 {
     public SharedData sharedData;
+    public StartGameManager gameManager;
     public TextMeshProUGUI[] playerScoresUI;
     public TextMeshProUGUI timerUI;
     public Image timerBarUI;
@@ -25,7 +26,7 @@ public class ScoreManager : MonoBehaviour
     void Update()
     {
         
-        for(int i = 0; i <= playerScores.Length; i++)
+        for(int i = 0; i < playerScores.Length; i++)
         {
             if(playerScores[i] < 0)
             {
@@ -43,17 +44,22 @@ public class ScoreManager : MonoBehaviour
         }
         if(timeLeft < 0)
         {
-
+            StartCoroutine(EndRound());
         }
     }
     public void AddScoreTag(int playerID)
     {
         playerScores[playerID] += pointsPerTag;
-        print(playerScores[playerID].ToString());
+        //print(playerScores[playerID].ToString());
     }
     public void SubtractScoreTag(int playerID)
     {
         playerScores[playerID] -= pointsPerTag;
-        print(playerScores[playerID].ToString());
+        //print(playerScores[playerID].ToString());
+    }
+    public IEnumerator EndRound(){
+        gameManager.EndGameUI();
+        yield return new WaitForSeconds(5);
+        
     }
 }

@@ -12,7 +12,6 @@ public class PlayerTag : MonoBehaviour
 
     void Start()
     {
-        scoreManager = GetComponent<ScoreManager>();
         playerInput = GetComponent<PlayerMovement>();
         body = GetComponent<Rigidbody2D>();
     }
@@ -26,12 +25,11 @@ public class PlayerTag : MonoBehaviour
     {
         if(other.gameObject.GetComponent<PlayerMovement>() as PlayerMovement)
         {
-            //if(other.gameObject.GetComponent<PlayerMovement>().playerId == sharedData.currentMainPlayer) { 
-            StartCoroutine(Tagged());            
-            scoreManager.AddScoreTag(other.gameObject.GetComponent<PlayerMovement>().playerId);
-                print(other.gameObject.GetComponent<PlayerMovement>().playerId.ToString());
-            scoreManager.SubtractScoreTag(playerInput.playerId);
-            //}
+            if(other.gameObject.GetComponent<PlayerMovement>().playerId == sharedData.currentMainPlayer) { 
+            StartCoroutine(Tagged());       
+            scoreManager.AddScoreTag(playerInput.playerId);
+            scoreManager.SubtractScoreTag(sharedData.currentMainPlayer);
+            }
         }
     }
     public IEnumerator Tagged()

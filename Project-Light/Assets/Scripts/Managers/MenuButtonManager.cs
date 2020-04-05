@@ -16,9 +16,13 @@ public class MenuButtonManager : MonoBehaviour
     {
         SceneManager.LoadScene(scene[1].ToString());
     }
-    public void Settings()
+    public void Credits()
     {
         SceneManager.LoadScene(scene[2].ToString());
+    }
+    public void Instructions()
+    {
+        SceneManager.LoadScene(scene[3].ToString());
     }
     public void QuitGame()
     {
