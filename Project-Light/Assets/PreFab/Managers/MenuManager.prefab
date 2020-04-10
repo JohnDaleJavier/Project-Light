@@ -43,6 +43,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 043b588fb4c3995448d871af45263fdd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  systemPref: {fileID: 11400000, guid: f2c109977a07ed54084cb747a3faefe0, type: 2}
   scene:
   - GamePreface
   - Options

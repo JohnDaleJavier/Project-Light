@@ -9,7 +9,15 @@ public class BGMusicManager : MonoBehaviour
     AudioSource audio;
     public AudioClip GameMusic;
     void Start(){
+        
         audio = GetComponent<AudioSource>();
+        if(systemPref.introShouldPlay = true){
+            audio.PlayDelayed(2f);
+        }
+        else{
+            audio.Play();
+        }
+        
     }
     void Awake()
     {

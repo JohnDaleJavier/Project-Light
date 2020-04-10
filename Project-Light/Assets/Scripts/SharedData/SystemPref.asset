@@ -13,3 +13,4 @@ MonoBehaviour:
   m_Name: SystemPref
   m_EditorClassIdentifier: 
   masterVol: 1
+  introShouldPlay: 0
