@@ -28,5 +28,8 @@ public class MenuButtonManager : MonoBehaviour
     {
         Application.Quit();
     }
+    public void ReturnToMenu(){
+        SceneManager.LoadScene(scene[4].ToString());
+    }
 
 }
