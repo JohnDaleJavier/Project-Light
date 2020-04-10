@@ -14,6 +14,7 @@ public class ScoreManager : MonoBehaviour
     public Image timerBarUI;
 
     public float pointsPerTag = 20;
+    public float pointsPerCoin = 15;
     float[] playerScores = { 0, 0, 0, 0 };
 
     float timeLeft;
@@ -50,12 +51,14 @@ public class ScoreManager : MonoBehaviour
     public void AddScoreTag(int playerID)
     {
         playerScores[playerID] += pointsPerTag;
-        //print(playerScores[playerID].ToString());
+    }
+        public void AddScoreCoin(int playerID)
+    {
+        playerScores[playerID] += pointsPerCoin;
     }
     public void SubtractScoreTag(int playerID)
     {
         playerScores[playerID] -= pointsPerTag;
-        //print(playerScores[playerID].ToString());
     }
     public IEnumerator EndRound(){
         gameManager.EndGameUI();

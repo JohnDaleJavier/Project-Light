@@ -11,7 +11,7 @@ public class BGMusicManager : MonoBehaviour
     void Start(){
         
         audio = GetComponent<AudioSource>();
-        if(systemPref.introShouldPlay = true){
+        if(systemPref.introShouldPlay == true){
             audio.PlayDelayed(2f);
         }
         else{

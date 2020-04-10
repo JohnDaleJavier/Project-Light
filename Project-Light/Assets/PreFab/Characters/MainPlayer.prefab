@@ -125,7 +125,7 @@ MonoBehaviour:
   playerHorizSpeed: 3
   playerVertSpeed: 3
   maxSpeed: 5
-  deathTimer: 5
+  deathTimer: 3
   canMove: 0
   caughtInLight: 0
   playerId: 0
