@@ -9,8 +9,10 @@ public class SharedData : ScriptableObject
     public float setTime;
     public bool pauseGame;
     public int currentMainPlayer;
+    public bool respawnAll;
     public void OnEnable()
     {
+        respawnAll = false;
         pauseGame = false;
         setRounds = 1;
         setTime = 60;

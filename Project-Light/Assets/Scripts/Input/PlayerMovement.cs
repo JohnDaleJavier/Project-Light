@@ -102,6 +102,9 @@ public class PlayerMovement : MonoBehaviour
             deathTimer = deathTimerHold;
             //print(playerHorizSpeed.ToString() +" "+ playerVertSpeed.ToString());
         }
+        if(sharedData.respawnAll){
+            StartCoroutine(Death());
+        }
     }
 
     void FixedUpdate()
@@ -153,7 +156,7 @@ public class PlayerMovement : MonoBehaviour
         // stop everything Die Respawn wait 1 second
         anim.SetBool("Death",true);
         canMove = false;
-        yield return new WaitForSeconds(2);
+        yield return new WaitForSeconds(1.5f);    
         anim.SetBool("Death",false);
         transform.position = startPosition;
         canMove = true;

@@ -45,7 +45,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   systemPref: {fileID: 11400000, guid: f2c109977a07ed54084cb747a3faefe0, type: 2}
   scene:
-  - GamePreface
+  - GameScene
   - Options
   - Credits
   - Instructions

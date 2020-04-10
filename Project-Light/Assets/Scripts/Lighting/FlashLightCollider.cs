@@ -5,16 +5,27 @@ using UnityEngine;
 public class FlashLightCollider : MonoBehaviour
 {
     public SharedData sharedData;
+    AudioSource audi;
+    public AudioClip burnAudi;
+
+    bool notCasted;
     // Start is called before the first frame update
     void Start()
     {
-        
+        audi = GetComponent<AudioSource>();
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+    private void OnTriggerEnter2D(Collider2D other){
+        if (other.gameObject.GetComponent<PlayerMovement>() as PlayerMovement)
+        {
+            if (other.gameObject.GetComponent<PlayerMovement>().playerId != sharedData.currentMainPlayer)
+            {
+                if(notCasted){
+                    audi.PlayOneShot(burnAudi,.5f);
+                    notCasted = false;
+                }
+                
+            }
+        }
     }
     private void OnTriggerStay2D(Collider2D other)
     {
@@ -22,7 +33,7 @@ public class FlashLightCollider : MonoBehaviour
         {
             if (other.gameObject.GetComponent<PlayerMovement>().playerId != sharedData.currentMainPlayer)
             {
-                print ("AGHHHHHHHHHHHHHHHHHHHHHHHHHHHHH");
+                //audi.Play();
                 other.gameObject.GetComponent<PlayerMovement>().caughtInLight = true;
             }
         }
@@ -32,7 +43,8 @@ public class FlashLightCollider : MonoBehaviour
         {
             if (other.gameObject.GetComponent<PlayerMovement>().playerId != sharedData.currentMainPlayer)
             {
-                print ("poop");
+                audi.Stop();
+                notCasted = true;
                 other.gameObject.GetComponent<PlayerMovement>().caughtInLight = false;
             }
         }

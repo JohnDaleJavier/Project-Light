@@ -6,16 +6,16 @@ using UnityEngine.SceneManagement;
 public class BGMusicManager : MonoBehaviour
 {
     public SystemPref systemPref;
-    AudioSource audio;
+    AudioSource audi;
     public AudioClip GameMusic;
     void Start(){
         
-        audio = GetComponent<AudioSource>();
+        audi = GetComponent<AudioSource>();
         if(systemPref.introShouldPlay == true){
-            audio.PlayDelayed(2f);
+            audi.PlayDelayed(2f);
         }
         else{
-            audio.Play();
+            audi.Play();
         }
         
     }
@@ -32,10 +32,10 @@ public class BGMusicManager : MonoBehaviour
     }
     void Update()
     {
-        audio.volume = systemPref.masterVol;
+        audi.volume = systemPref.masterVol;
         Scene currentScene = SceneManager.GetActiveScene();
         string sceneName = currentScene.name;
-        if(sceneName == "Instructions"){
+        if(sceneName == "GameScene"){
             Destroy(this.gameObject);
         }
     }
