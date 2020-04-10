@@ -10,6 +10,7 @@ public class SharedData : ScriptableObject
     public bool pauseGame;
     public int currentMainPlayer;
     public bool respawnAll;
+    public float[] playerScoresHold = {0,0,0,0};
     public void OnEnable()
     {
         respawnAll = false;

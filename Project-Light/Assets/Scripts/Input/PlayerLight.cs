@@ -25,8 +25,6 @@ public class PlayerLight : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
-
         //https://answers.unity.com/questions/630670/rotate-2d-sprite-towards-moving-direction.html
         
         float directional = (Mathf.Atan2(player.GetAxisRaw("VerticalInspect"), player.GetAxisRaw("HorizontalInspect")) * Mathf.Rad2Deg) - 90;

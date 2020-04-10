@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class CountDownAudio : MonoBehaviour
 {
-    AudioSource audio;
+    AudioSource audi;
     void Start()
     {
-        audio = GetComponent<AudioSource>();
-        audio.PlayDelayed(1.5f);
+        audi = GetComponent<AudioSource>();
+        audi.PlayDelayed(1.5f);
     }
 
 }

@@ -39,10 +39,8 @@ public class PlayerTag : MonoBehaviour
     {
         sharedData.respawnAll = true;
         sharedData.pauseGame = true;
-        
         audi.PlayOneShot(deathSound, 1f);
-        //tell all ghosts to emote despawn and respawn at middle
-        yield return new WaitForSeconds(5);
+        yield return new WaitForSeconds(1.5f);
         sharedData.pauseGame = false;
         sharedData.respawnAll = false;
     }

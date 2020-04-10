@@ -61,8 +61,15 @@ public class ScoreManager : MonoBehaviour
         playerScores[playerID] -= pointsPerTag;
     }
     public IEnumerator EndRound(){
+        for(int i = 0; i < playerScores.Length; i++)
+        {
+            sharedData.playerScoresHold[i] = playerScores[i];
+            print(sharedData.playerScoresHold[i].ToString());
+        }
+        sharedData.pauseGame = true;
         gameManager.EndGameUI();
         yield return new WaitForSeconds(5);
-        
+        sharedData.pauseGame = false;
+        SceneManager.LoadScene("EndGame");
     }
 }
